@@ -1,6 +1,6 @@
 # Mapping Vacant Lots in Toledo, Paraná, Brazil
 
-First of all, the objetive of this small project was to figure out how to extract GPS data from pictures and use it on a leaflet map. 
+First of all, the goal of this small project was to figure out how to extract GPS data from pictures and use it on a leaflet map. 
 
 The easiest way to achive that seems te using the command line application from ExifTool, the function used can be found in the file get_exif.R and was made using this tutorial: https://paleolimbot.github.io/tutorial/rexiftool.html
 
