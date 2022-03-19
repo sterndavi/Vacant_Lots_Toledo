@@ -1,0 +1,53 @@
+.navbar-logo img {
+	margin-right: 50px;
+	height: auto;
+	width: 15%;
+	margin-bottom: 0.75%;
+}
+
+.navbar-logo {
+	margin-left: -5px;
+}
+
+.section.sidebar {
+	width: 250px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 10px;
+} 
+
+.bg-light, .navbar.navbar-default, .navbar.navbar-inverse {
+	background-color: #d4dadc !important;
+	border-color: #d4dadc;
+}
+
+.navbar-light .navbar-brand, .navbar.navbar-inverse .navbar-brand, .navbar.navbar-default .navbar-brand {
+	color: rgb(0, 0, 0);
+	font-size: 16px;
+	font-weight: 400;
+	margin-left: -5.5%;
+	padding-left: 3px;
+	
+}
+
+.navbar-light .navbar-brand:hover, .navbar.navbar-inverse .navbar-brand:hover, .navbar.navbar-default .navbar-brand:hover, .navbar-light .navbar-brand:focus, .navbar.navbar-inverse .navbar-brand:focus, .navbar.navbar-default .navbar-brand:focus {
+	color: rgb(0, 0, 0);
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+	border-top-color: #bc2345;
+}
+
+
+.dashboard-column {
+	margin-top: 5px;
+	margin-left: 15px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+}
+
+.crosstalk-input .control-label {
+	margin-bottom: 6px;
+	vertical-align: middle;
+	margin-top: 6px;
+}
