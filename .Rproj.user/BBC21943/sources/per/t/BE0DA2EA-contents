@@ -1,0 +1,106 @@
+---
+title: "Vacant Lots in La Salle, Toledo - PR"
+author:
+output: 
+ flexdashboard::flex_dashboard:
+    logo:
+    css: misc/style.css
+    theme:
+      version: 4
+      bootswatch: lumen
+      base_font: 
+        google: Open Sans
+    orientation: columns
+    vertical_layout: fill
+    
+---
+
+
+
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(leaflet)
+library(tidyverse)
+library(here)
+library(crosstalk)
+library(lubridate)
+library(glue)
+#<link rel="shortcut icon" href="Misc/favicon.ico">
+
+file <- "/data/csv/data.csv"
+descr_file <- "/data/csv/descriptivedata.csv"
+ 
+popupdescr <- "<b>Date Taken:</b> {Date_show}<br><br><b>Has Someone looking after it? </b>{is_cared_for}<br><b>For sale? </b>{is_for_sale}<br><br>"
+
+descriptive_data <- read_csv(glue::glue("{here()}{descr_file}"))
+
+Geo_data <- read_csv(glue::glue("{here()}{file}"))
+Geo_data <- Geo_data %>% 
+    mutate(Date = as_date(DateTimeOriginal),
+           Date_show = format(Date,format = "%d/%m/%Y"),
+           path = glue("{here()}/data/photos/compressed/{FileName}")) %>% 
+    filter(!is.na(Date)) %>% 
+    left_join(descriptive_data, by = "FileName") %>% 
+    mutate(popup = glue(popupdescr))
+
+
+SharedData$new(Geo_data) -> Geo_shared
+
+```
+
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+check <-
+    filter_select("date",
+                    "Select a Date",
+                    Geo_shared ,
+                    ~ `Date_show`)
+
+cared <- filter_checkbox("is_cared",
+                         "The lot seems to have someone looking after it?",
+                         Geo_shared,
+                         ~is_cared_for)
+
+
+for_sale <- filter_checkbox("for_sale",
+                         "Does the lot have some signs of trying to be sold?",
+                         Geo_shared,
+                         ~is_for_sale)
+
+
+check
+for_sale
+cared
+
+
+
+```
+
+
+Column {data-width=1000}
+-----------------------------------------------------------------------
+
+### Map
+
+```{r}
+
+
+photos <- unlist(Geo_shared$data()[,7])
+
+n <- leaflet::leaflet(data = Geo_shared) %>%
+        addProviderTiles(providers$CartoDB.Positron) %>% 
+        addMarkers(~GPSLongitude, ~GPSLatitude, group = "point", popup = ~popup) %>% 
+
+    leafpop::addPopupImages(image = photos , group = "point", height = 200, tooltip = T) %>% 
+    leafpop::addPopupImages(image = photos , group = "point", height = 400, tooltip = F)
+
+
+n
+
+
+```
+
