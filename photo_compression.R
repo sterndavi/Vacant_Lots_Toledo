@@ -15,7 +15,7 @@ resize_pics <- function(files,from,to){
         
         filename <- i
         foto <- magick::image_read(glue::glue("{from}{i}"))
-        foto <- image_scale(foto, "x600")
+        foto <- image_scale(foto, "x400")
         
         image_write(foto, quality = 0.7, path = glue::glue("{to}{filename}"))
     }                  
