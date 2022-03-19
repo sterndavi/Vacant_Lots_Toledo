@@ -15,7 +15,7 @@ output:
     
 ---
 
-
+<link rel="shortcut icon" href="Misc/favicon.png">
 
 
 ```{r setup, include=FALSE}
@@ -26,7 +26,7 @@ library(here)
 library(crosstalk)
 library(lubridate)
 library(glue)
-#<link rel="shortcut icon" href="Misc/favicon.ico">
+
 
 file <- "/data/csv/data.csv"
 descr_file <- "/data/csv/descriptivedata.csv"
