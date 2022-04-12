@@ -8,4 +8,4 @@ Afterwards, I used the magick library to compress the photos, since the output i
 
 One small discovery that I made, while trying to build the popups using crosstalk objects, is that you need to extract the photos paths as a vector from the crosstalk object to be able to plot it on a leaflet map, works flawlessly and does not mess up with the finicky nature of the crosstalk lib.
 
-the final product can be found here: https://sterndavi.github.io/Vacant.Lots.Toledo/
+the final product can be found here: https://sterndavi.github.io/vacant.lots.toledo/
